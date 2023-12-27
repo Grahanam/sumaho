@@ -31,7 +31,7 @@ const Singleproduct=()=>{
             setprocessordata(product.processor.split('|'))
          } 
         })
-    },[id])
+    },[id,osdata,storagedata,processordata])
     return(
         <div className="px-1 md:px-5 lg:px-24">
             {product.title?<>
@@ -99,7 +99,6 @@ const Singleproduct=()=>{
                             <h3>OS Type</h3>
                             
                             {osdata.length>0?
-                            
                             <h3 className="font-bold">{osdata[0]}</h3>
                             :<></>}
                         </div>
@@ -107,8 +106,7 @@ const Singleproduct=()=>{
                             <h3>OS NAME & Version</h3>
                             {osdata.length>0?
                             <h3 className="font-bold">{osdata[1]}</h3>
-                            :<></>}
-                            
+                           :<></>} 
                         </div>
                     </div>
                 </div>
