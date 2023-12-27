@@ -5,6 +5,9 @@ export const productSlice=createSlice({
     name:'product',
     initialState:{
         products:[],
+        osdata:[],
+        processordata:[],
+        storagedata:[],
         product:{},
         singleloading:false,
         singleerror:null,
@@ -18,6 +21,16 @@ export const productSlice=createSlice({
         deleteimageerror:null
     },
     reducers:{
+        getdata:(state)=>{
+            let product=state.product
+            return{
+                ...state,
+                processordata:product.processor.split('|'),
+                osdata:product.processor.split('|'),
+                storagedata:product.processor.split('|'),
+
+            } 
+        }
     },
     extraReducers:(builder)=>{
         builder
@@ -93,6 +106,6 @@ export const productSlice=createSlice({
 }
 )
 
-export  const{}=productSlice.actions
+export  const{getdata}=productSlice.actions
 
 export default productSlice.reducer

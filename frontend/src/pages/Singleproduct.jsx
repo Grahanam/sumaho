@@ -4,34 +4,25 @@ import { useParams } from "react-router-dom"
 import { fetchSingleProduct } from "../actions/product/productAction"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faIndianRupeeSign, faStar } from "@fortawesome/free-solid-svg-icons"
+import { getdata } from "../features/Product/productSlice"
+
 
 
 
 
 const Singleproduct=()=>{
     const {id}=useParams()
-    const {product}=useSelector((state)=>state.product)
+    const {product,osdata,processordata,storagedata}=useSelector((state)=>state.product)
     const [selectedImage,setselectedImage]=useState(0)
-    const [osdata,setosdata]=useState([])
-    const [storagedata,setstoragedata]=useState([])
-    const [processordata,setprocessordata]=useState([])
     const dispatch=useDispatch()
 
-    
 
     useEffect(()=>{
         dispatch(fetchSingleProduct(id))
         .then(()=>{
-         if(product.OS){
-         setosdata(product.OS.split('|'))
-         setstoragedata(product.storage.split('|'))
-         
-         }
-         if(product.processor){
-            setprocessordata(product.processor.split('|'))
-         } 
+            dispatch(getdata())
         })
-    },[id,osdata,storagedata,processordata])
+    },[id])
     return(
         <div className="px-1 md:px-5 lg:px-24">
             {product.title?<>
