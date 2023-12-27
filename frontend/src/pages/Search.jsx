@@ -61,12 +61,8 @@ const Search=()=>{
       }
       querystr+=`brand=${brand}`
     }
-   //  setqueryvalue(querystr)
+
     
-   //  const searchParams=useSearchParams()
-   //  console.log(searchParams)
-   //  const query=searchParams.get('query')
-   //  console.log(query)
    useEffect(()=>{
       
         if(selectbrand!==''&&query.get('brand')!=selectbrand){
@@ -74,34 +70,20 @@ const Search=()=>{
         }
         if(selectrange!==''&&query.get('range')!=selectrange){
          querystr+='&range='+selectrange 
-         // setqueryvalue(querystr)
          }
          if(selecttype!==''&&query.get('type')!=selecttype){
             querystr+='&type='+selecttype
-            // setqueryvalue(querystr)
+
             }
             if(selectram!==''){
                querystr+='&ram='+selectram
-               // setqueryvalue(querystr)
             }
             if(selectprocessor!==''){
                querystr+='&processor='+selectprocessor
-               // setqueryvalue(querystr)
             }
-      //  setqueryvalue(querystr)
         setqueryvalue(querystr)
         
      },[selectbrand,selectrange,selecttype,selectprocessor,selectram])
-
-   //   useEffect(()=>{
-
-   //      if(selectrange!==''&&query.get('range')!=selectrange){
-   //        querystr+='&range='+selectrange 
-   //        setqueryvalue(querystr)
-   //      }
-   //      setqueryvalue(querystr)
-        
-   //   },[selectrange])
 
      useEffect(()=>{
       setqueryvalue(querystr)
@@ -111,23 +93,12 @@ const Search=()=>{
         if(queryvalue!==''){
            dispatch(fetchResults(queryvalue))
            .then(()=>{
-            // if(firstcall==false){s
-            //    dispatch(getbrandresult())
-            //    setfirstcall(!firstcall)
-            // }
             dispatch(getbrandresult())
             
            }) 
         }
      },[queryvalue])
 
-
-   //   useEffect(()=>{
-   //    if(results.length>0){
-   //       dispatch(getbrandresult())
-   //    }
-      
-   //   },[results])
      return(
         <> 
             <div className="px-3 md:px-10">
@@ -135,7 +106,7 @@ const Search=()=>{
                   <h2 className="text-xl md:text-4xl font-bold">Results for {displayquery}</h2>
                   <span className="text-lg">({results.length})</span>
                </div>
-               <button onClick={()=>{setshowfilter(!showfilter)}} className="border bg-black p-1 rounded">Filter<i className="pl-2"><FontAwesomeIcon icon={faFilter}/></i></button>
+               <button onClick={()=>{setshowfilter(!showfilter)}} className="block md:hidden border bg-black p-1 rounded">Filter<i className="pl-2"><FontAwesomeIcon icon={faFilter}/></i></button>
                <div className={`${showfilter?'flex':'hidden'}  md:flex flex-col  md:flex-row pb-3`}>
                   {brandresult.length>0?
                      <Filter title={'Brand'} results={brandresult} select={selectbrand} setselect={setselectbrand}/>
