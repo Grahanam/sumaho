@@ -25,8 +25,10 @@ app.use('/api/product',productRoute)
 // Route: api/brand/
 app.use('/api/brand',brandRoute)
 
-
-
+//request static build pages
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  });
 
 
 //starting server  
